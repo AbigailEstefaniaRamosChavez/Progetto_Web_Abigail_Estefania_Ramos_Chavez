@@ -30,7 +30,7 @@ public class AutenticazioneController {
     public ResponseEntity<Object> register(@RequestBody RegisterRequest registerRequest){
         utenteService.addUtente(registerRequest.toUtente());
         //TODO: controllare se l'utente è già registrato, tramite lo username
-        return new ResponseEntity<>("utente registrato", HttpStatus.OK);
+        return ResponseEntity.ok("");
     }
 
 

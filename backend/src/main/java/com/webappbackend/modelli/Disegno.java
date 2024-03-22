@@ -17,6 +17,8 @@ public class Disegno {
 
     public String immagine;
 
+    public String descrizione;
+
     public LocalDate data;
 
 

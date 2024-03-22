@@ -1,10 +1,25 @@
-<p>app works</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+    <div class="centered-form">
+        <nav class=" navbar-brand"> <a class="navbar-brand" routerLink="home">Galleria</a> </nav>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <nav class="nav-link "> <a class="nav-link" routerLink="/home"
+                            [routerLinkActive]="'active bg-pill'">Home</a> </nav>
+                </li>
+                <li class="nav-item">
+                    <nav class="nav-link "> <a class="nav-link" routerLink="/login"
+                            [routerLinkActive]="'active bg-pill'">Login</a> </nav>
+                </li>
+                <li class="nav-item">
+                    <nav class="nav-link "> <a class="nav-link" routerLink="/areaPrivata"
+                            [routerLinkActive]="'active bg-pill'">Area personale</a> </nav>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-{{disegni[0].nome}}
-{{disegni[0].immagine}}
+<router-outlet>
 
-<mat-card class="example-card"> 
-<mat-card-title>{{disegno[0].nome}}</mat-card-title>
-<mat-card-subtitle>{{disegno[0].data}}</mat-card-subtitle>
-<mat-card-subtitle>{{disegno[0].descrizione}}</mat-card-subtitle>
-</mat-card> 
+</router-outlet>

@@ -36,7 +36,7 @@ public class UtenteController {
     public ResponseEntity<Object> getDisegniUtente(@PathVariable("id") int id) {
         Utente utente = utenteService.getUtente(id);
         if(utente == null)
-            return new ResponseEntity<>("l'utente non è stato trovato",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("l'utente non è stato trovato",HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(utente.getDisegni(), HttpStatus.OK);
     }
 

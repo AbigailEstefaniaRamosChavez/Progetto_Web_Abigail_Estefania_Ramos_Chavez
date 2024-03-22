@@ -1,0 +1,15 @@
+<div class="card-group">
+    <div class="card " *ngFor="let disegno of disegni">
+        <!-- TODO mettere che ogni circaq 5 disegno o qualcosa del genere si crea un altra riga -->
+        <div class="bg-dark rounded-top">
+            <img [src]="disegno.immagine" class="card-img-top" alt="Immagine da Disegno">
+        </div>
+
+        <div class="card-body">
+            <h4 class="card-title"><strong>{{disegno.nome}}</strong></h4>
+            <p class="card-text">{{disegno.descrizione}}</p>
+            <p class="card-date"><small class="text-body-secondary">{{disegno.data| date: 'dd/MM/yyyy'}}</small></p>
+        </div>
+    </div>
+
+</div>

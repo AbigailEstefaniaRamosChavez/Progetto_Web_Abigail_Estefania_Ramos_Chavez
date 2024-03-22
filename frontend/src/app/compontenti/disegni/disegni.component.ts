@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import { DisegnoServiceService } from '../services/disegno-service.service';
-import { Disegno } from '../interfaces/Disegno';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
+import { Disegno } from '../../interfaces/Disegno';
+import { DisegnoServiceService } from '../../services/disegno-service.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-disegni',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  imports: [CommonModule],
+  templateUrl: './disegni.component.html',
+  styleUrl: './disegni.component.scss'
 })
-export class HomeComponent {
+export class DisegniComponent {
 
   disegni: Disegno[] = [];
 

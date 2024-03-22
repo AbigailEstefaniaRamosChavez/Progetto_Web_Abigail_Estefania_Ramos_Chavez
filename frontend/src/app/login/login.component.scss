@@ -1,0 +1,18 @@
+/* Aggiungi questo al tuo file CSS */
+
+.centered-form {
+  justify-content: center;
+  align-items: center;
+  width: 55%; /* Imposta la larghezza al 70% della viewport */
+  height: 55vh; /* Imposta l'altezza al 70% della viewport */
+  margin: 0 auto; /* Centra l'elemento orizzontalmente */
+  }
+  
+  
+  .form-control:focus {
+    font-weight: bold; /* Rende il testo più grassetto quando il campo è in focus */
+    border-color: #000000; /* Cambia il colore del bordo quando il campo è in focus */
+    box-shadow: 0 0 5px #000000; /* Aggiungi un'ombra quando il campo è in focus */
+  }
+  
+

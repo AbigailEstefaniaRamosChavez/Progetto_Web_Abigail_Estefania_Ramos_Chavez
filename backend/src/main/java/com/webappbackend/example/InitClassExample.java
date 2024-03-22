@@ -25,20 +25,22 @@ public class InitClassExample {
         var disegno1 = new Disegno();
         disegno1.nome = "disegno1";
         disegno1.data = LocalDate.now();
-        disegno1.immagine = "immagine1";
+        disegno1.immagine = "\\assets\\img\\img_1.jpeg";
+        disegno1.descrizione = "descrizione1";
         disegnoService.aggiungiDisegno(disegno1, utente1.id);
-
 
         var disegno2 = new Disegno();
         disegno2.nome = "disegno2";
         disegno2.data = LocalDate.now();
-        disegno2.immagine = "immagine2";
+        disegno2.immagine = "\\assets\\img\\img_1.jpeg";
+        disegno2.descrizione = "descrizione2";
         disegnoService.aggiungiDisegno(disegno2, utente2.id);
 
         var disegno3 = new Disegno();
         disegno3.nome = "disegno3";
         disegno3.data = LocalDate.now();
-        disegno3.immagine = "immagine3";
+        disegno3.immagine = "\\assets\\img\\still.jpg";
+        disegno3.descrizione = "descrizione3";
         disegnoService.aggiungiDisegno(disegno3, utente1.id);
 
 

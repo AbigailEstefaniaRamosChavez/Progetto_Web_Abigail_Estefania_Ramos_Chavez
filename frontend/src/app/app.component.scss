@@ -1,0 +1,15 @@
+.centered-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%; /* Imposta la larghezza al 95% della viewport */
+    height: 5vh; /* Imposta l'altezza al 95% della viewport */
+    margin: 0 auto; /* Centra l'elemento orizzontalmente */
+    }
+    .navbar-brand {
+        font-size: 175%; /* Imposta la dimensione del font per "Galleria" */
+      }
+      
+      .nav-link {
+        font-size: 125%; /* Imposta la dimensione del font per "Home" e "Login" */
+      }

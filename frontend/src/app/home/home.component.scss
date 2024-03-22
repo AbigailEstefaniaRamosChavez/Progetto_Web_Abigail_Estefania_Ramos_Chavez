@@ -1,0 +1,32 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url('https://i.pinimg.com/564x/07/26/6f/07266f9dfd2cce9b8fc4b946d521f056.jpg');  /* Aggiungi l'URL della tua immagine qui */
+  background-size: cover;  /* Questo farà in modo che l'immagine copra l'intera area del body */
+  
+}
+@font-face {
+  font-family: 'Sellena Brush';
+  src: url('https://www.fontspace.com/sellena-brush-font-f71257');
+}
+
+.blockquote-footer::before {
+  content: "";  /* Rimuove il segno "-" */
+}
+
+.display-2 {
+  font-family: 'NomeDelTuoFont';
+}
+
+
+.blockquote-footer {
+  color: rgb(245, 238, 238);  /* Rende il testo più chiaro */
+  height: 500%;
+}
+.blockquote {
+  transform: translateY(-70%);  /* Sposta il blocco di citazione verso l'alto */
+}
+

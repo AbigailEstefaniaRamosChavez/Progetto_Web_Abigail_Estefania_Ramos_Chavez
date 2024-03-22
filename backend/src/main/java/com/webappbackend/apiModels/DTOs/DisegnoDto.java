@@ -8,6 +8,7 @@ public class DisegnoDto {
     public String immagine;
     public String data;
     public UtenteDto utente;
+    public String descrizione;
 
     public DisegnoDto(Disegno disegno) {
         this.id = disegno.id;
@@ -15,5 +16,6 @@ public class DisegnoDto {
         this.immagine = disegno.immagine;
         this.data = disegno.data.toString();
         this.utente = new UtenteDto(disegno.utente);
+        this.descrizione = disegno.descrizione;
     }
 }
