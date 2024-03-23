@@ -1,15 +1,26 @@
-.centered-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 5%; /* Imposta la larghezza al 95% della viewport */
-    height: 5vh; /* Imposta l'altezza al 95% della viewport */
-    margin: 0 auto; /* Centra l'elemento orizzontalmente */
-    }
     .navbar-brand {
-        font-size: 175%; /* Imposta la dimensione del font per "Galleria" */
-      }
+          font-size: 300%; /* Imposta la dimensione del font per "Galleria" */
+          margin-right: 50px; /* Aggiungi spazio a destra per spostare la parola */
+          
+    }
       
-      .nav-link {
-        font-size: 125%; /* Imposta la dimensione del font per "Home" e "Login" */
-      }
+    .nav-link {
+        
+        display: inline-block;
+        margin-right: 50  px; 
+        font-size: 180%;
+
+    }
+
+     
+
+    $sfondo-rosso: rgb(241, 191, 241); // Colore rosso
+    .navbar {
+     background-color: adjust-color($sfondo-rosso, $lightness: -15%);
+    // Altri stili per il navigatore...
+    }
+
+      
+
+
+  

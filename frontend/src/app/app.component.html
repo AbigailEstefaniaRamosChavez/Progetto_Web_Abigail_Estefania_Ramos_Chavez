@@ -1,25 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
-    <div class="centered-form">
-        <nav class=" navbar-brand"> <a class="navbar-brand" routerLink="home">Galleria</a> </nav>
-        <div class="collapse navbar-collapse" id="navbarNav">
+<nav class="navbar navbar-expand-lg navbar-dark ">
+    <div class="container ">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <a class="navbar-brand" routerLink="home">Galleria</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <nav class="nav-link "> <a class="nav-link" routerLink="/home"
-                            [routerLinkActive]="'active bg-pill'">Home</a> </nav>
+                    <a class="nav-link" routerLink="/home" [routerLinkActive]="'active bg-pill'">Home</a>
                 </li>
                 <li class="nav-item">
-                    <nav class="nav-link "> <a class="nav-link" routerLink="/login"
-                            [routerLinkActive]="'active bg-pill'">Login</a> </nav>
+                    <a class="nav-link" routerLink="/login" [routerLinkActive]="'active bg-pill'">Login</a>
                 </li>
                 <li class="nav-item">
-                    <nav class="nav-link "> <a class="nav-link" routerLink="/areaPrivata"
-                            [routerLinkActive]="'active bg-pill'">Area personale</a> </nav>
+                    <a class="nav-link" routerLink="/areaPrivata" [routerLinkActive]="'active bg-pill'">Area personale</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<router-outlet>
-
-</router-outlet>
+<router-outlet></router-outlet>
