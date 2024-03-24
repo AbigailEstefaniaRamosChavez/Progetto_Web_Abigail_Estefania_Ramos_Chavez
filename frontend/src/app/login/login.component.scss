@@ -3,8 +3,8 @@
 .centered-form {
   justify-content: center;
   align-items: center;
-  width: 55%; /* Imposta la larghezza al 70% della viewport */
-  height: 55vh; /* Imposta l'altezza al 70% della viewport */
+  width: 20%; /* Imposta la larghezza al 70% della viewport */
+  height: 20vh; /* Imposta l'altezza al 70% della viewport */
   margin: 0 auto; /* Centra l'elemento orizzontalmente */
   }
   
@@ -15,4 +15,13 @@
     box-shadow: 0 0 5px #000000; /* Aggiungi un'ombra quando il campo è in focus */
   }
   
+  .d-flex {
+    display: flex;
+    justify-content: flex-end; /* Allinea orizzontalmente a destra */
+    align-items: flex-end; /* Allinea verticalmente in basso */
+    position: absolute; /* Posiziona in modo assoluto rispetto al contenitore genitore */
+    bottom: 320px; /* Imposta la distanza dal basso (personalizza questo valore) */
+    right: 725px; /* Imposta la distanza da destra (personalizza questo valore) */
+  }
 
+  
