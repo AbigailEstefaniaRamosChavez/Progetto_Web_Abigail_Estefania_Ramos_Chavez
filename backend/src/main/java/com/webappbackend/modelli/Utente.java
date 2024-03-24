@@ -2,11 +2,14 @@ package com.webappbackend.modelli;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class Utente {
+public class Utente  implements UserDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     public int id;
@@ -15,6 +18,8 @@ public class Utente {
     @JsonIgnore
     public String password;
     public String email;
+
+    public String salt;
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "utente")
     public List<Disegno> disegni;
@@ -44,6 +49,31 @@ public class Utente {
 
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
     }
 
     public String getPassword() {

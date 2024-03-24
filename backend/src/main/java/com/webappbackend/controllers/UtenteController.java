@@ -1,11 +1,17 @@
 package com.webappbackend.controllers;
 
+import com.webappbackend.apiModels.DTOs.DisegnoDto;
 import com.webappbackend.apiModels.DTOs.UtenteDto;
+import com.webappbackend.controllers.utils.DaiUtenteUtil;
+import com.webappbackend.modelli.Disegno;
 import com.webappbackend.modelli.Utente;
 import com.webappbackend.servizi.UtenteService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.models.annotations.OpenAPI30;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,25 +25,30 @@ public class UtenteController {
         this.utenteService = utenteService;
     }
 
-    @GetMapping("/{id}")
-        public ResponseEntity<Object> getUtente(@PathVariable("id") int id) {
-        Utente utente = utenteService.getUtente(id);
+    @GetMapping("/")
+        public ResponseEntity<Object> getUtente() {
+        Utente utente = DaiUtenteUtil.DaiUtente(
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+        );
         if(utente == null)
             return new ResponseEntity<>("l'utente non è stato trovato",HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(new UtenteDto(utente), HttpStatus.OK);
     }
 
-    /*
-     * dato un utente dammi tutti i disegni dell'utente(tramite solo l'id passato nella url)
-     * richiesta in GET
-     *
-     */
-    @GetMapping("/disegni/{id}")
-    public ResponseEntity<Object> getDisegniUtente(@PathVariable("id") int id) {
-        Utente utente = utenteService.getUtente(id);
+    @Operation(summary = "Prendere i disegni dell'utente")
+    @GetMapping("/disegni")
+    public ResponseEntity<Object> getDisegniUtente() {
+        Utente utente = DaiUtenteUtil.DaiUtente(
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+        );
         if(utente == null)
             return new ResponseEntity<>("l'utente non è stato trovato",HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(utente.getDisegni(), HttpStatus.OK);
+        return new ResponseEntity<>(
+                utente.getDisegni()
+                        .stream()
+                        .map(DisegnoDto::new)
+                , HttpStatus.OK
+        );
     }
 
 

@@ -6,14 +6,15 @@ import java.time.LocalDate;
 
 public class DisegnoAggiungiRequest {
     public String nome;
-    public String immagine;
-    public int utenteId;
+    public String descrizione;
+
+
 
 
     public Disegno toDisegno() {
         Disegno disegno = new Disegno();
         disegno.setNome(nome);
-        disegno.immagine = immagine;
+        disegno.descrizione = descrizione;
         disegno.data = LocalDate.now();
         return disegno;
     }

@@ -31,17 +31,16 @@ export class LoginScreenComponent {
       this.auth.registrazione(this.formgroup.value).subscribe(
         (data) => {
 
-          this.auth.setLogin(true)
+          this.auth.setLogin(data.token)
 
-          console.log("registrazione avvenuta" + this.auth.getLogin());
+          console.log("registrazione avvenuta" + this.auth.getToken());
         });
     } else {
       console.log(this.formgroup.value);
       this.auth.login(this.formgroup.value).subscribe(
         (data) => {
 
-          this.auth.setLogin(true)
-
+          this.auth.setLogin(data.token)
           console.log("login avvenuto" + this.auth.getLogin());
         });
     }

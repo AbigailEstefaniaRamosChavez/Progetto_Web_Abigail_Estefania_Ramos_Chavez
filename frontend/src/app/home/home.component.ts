@@ -14,13 +14,8 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent {
 
-  disegni: Disegno[] = [];
 
-  constructor(disegnoService: DisegnoServiceService) {
-    disegnoService.getDisegni().subscribe(
-      disegni => {
-        console.log(disegni);
-        this.disegni = disegni;
-      });
+
+  constructor() {
   }
 }

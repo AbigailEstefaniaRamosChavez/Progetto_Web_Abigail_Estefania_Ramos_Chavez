@@ -2,12 +2,27 @@ package com.webappbackend.controllers;
 
 import com.webappbackend.apiModels.Request.DisegnoAggiungiRequest;
 import com.webappbackend.apiModels.Request.DisegnoModificaRequest;
+import com.webappbackend.apiModels.Responses.ImageResponse;
+import com.webappbackend.controllers.utils.DaiUtenteUtil;
 import com.webappbackend.modelli.Disegno;
+import com.webappbackend.modelli.Utente;
 import com.webappbackend.servizi.DisegnoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/api/v0/disegno")
@@ -20,14 +35,24 @@ public class DisegnoController {
     }
 
 
-    @PostMapping("/creoDisegno/request")
-    public ResponseEntity<Object> addDisegno(@RequestBody DisegnoAggiungiRequest request) {
-        Disegno disegno = request.toDisegno(); //crea un disegno dalla richiesta
-        disegnoService.aggiungiDisegno(disegno,request.utenteId); //aggiunge il disegno al database insieme all'id dell'utente
+    @PostMapping(value = "/creoDisegno/request" ,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Object> addDisegno(@RequestParam("titolo") String titolo, @RequestParam("descrizione") String descrizione, @RequestParam("file") MultipartFile file ) throws IOException {
+        Utente utente = DaiUtenteUtil.DaiUtente(
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+        );
+        Disegno disegno = new Disegno();
+        disegno.setNome(titolo);
+        disegno.descrizione = descrizione;
+        disegno.data = LocalDate.now();
+        disegno = disegnoService.aggiungiDisegno(disegno, utente.id); //aggiunge il disegno al database insieme all'id dell'utente
+        Path path = Paths.get("src/main/resources/static/assets/img/" + disegno.id + ".jpeg"); //crea un percorso per salvare l'immagine
+        File fileCreato = new File(path.toString()); //crea un file
+        fileCreato.createNewFile();
+        try (FileOutputStream fileOutputStream = new FileOutputStream(fileCreato)) {
+            fileOutputStream.write(file.getBytes()); //scrive l'immagine nel file
+        }
+
         return new ResponseEntity<>("Disegno inserito!", HttpStatus.OK); //ritorna il disegno aggiunto
-        //STEP 1 : PRENDERE L'ID DELL'UTENTE DALLA RICHIESTA E CREARE IL DISEGNO DALLA RICHIESTA
-        //STEP 2 : AGGIUNGERE IL DISEGNO AL DATABASE TRAMITE IL SERVIZIO, USANDO LE INFORMAZIONI PRESI SOPRA
-        //STEP 3 : RITORNARE UNA RISPOSTA
     }
 
 
@@ -48,6 +73,16 @@ public class DisegnoController {
     public ResponseEntity<Object> eliminaDisegno(@PathVariable int id){
         disegnoService.rimuoviDisegno(id);
         return new ResponseEntity<>("Disegno eliminato!", HttpStatus.OK);
+    }
+
+    @GetMapping("/img/{id}")
+    public ResponseEntity<ImageResponse> getImg(@PathVariable("id") int id) throws IOException {
+        Path path = Paths.get("src/main/resources/static/assets/img/" + id + ".jpeg");
+        File file = new File(path.toString());
+        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(new ImageResponse(resource.getContentAsByteArray()));
     }
 
 }

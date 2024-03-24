@@ -10,20 +10,28 @@ import { DisegnoServiceService } from '../../services/disegno-service.service';
   styleUrl: './aggiungi-disegni.component.scss'
 })
 export class AggiungiDisegniComponent {
+  file: File | undefined;
+  fileSelezionato(e: Event) {
+    if (e.target instanceof HTMLInputElement && e.target.files && e.target.files.length > 0) {
+      this.file = e.target.files[0];
+
+    }
+  }
 
   constructor(private disegniservice: DisegnoServiceService) { }
   submit() {
-    this.form.value.utenteId = 1;
-    console.log(this.form.value);
-    this.disegniservice.aggiungiDisegno(this.form.value).subscribe(
+    let formData = new FormData();
+    formData.append('file', this.file as Blob);
+    formData.append('titolo', this.form.value.titolo);
+    formData.append('descrizione', this.form.value.descrizione);
+    this.disegniservice.aggiungiDisegno(formData).subscribe(
       (data) => {
         console.log(data);
       });
   }
 
   form: FormGroup = new FormGroup({
-    nome: new FormControl(''),
+    titolo: new FormControl(''),
     descrizione: new FormControl(''),
-    immagine: new FormControl(''),
   });
 }

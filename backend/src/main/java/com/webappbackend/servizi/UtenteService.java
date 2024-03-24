@@ -14,8 +14,6 @@ public class UtenteService {
     }
 
 
-    //aggiungi, rimuovi, modifica, prendi(tramite nome?)
-
 
     //metodo che cerca un utente
     public Utente getUtente(int id) {
@@ -27,7 +25,7 @@ public class UtenteService {
     //metodo che cerca un utente
     public Utente getUtente(String username) {
         return utenteRepository.findAll().stream()
-                .filter(utente -> utente.getUsername().equals(username))
+                .filter(utente -> utente.getUsername().equalsIgnoreCase(username))
                 .findFirst()
                 .orElse(null);
     }
