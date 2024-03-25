@@ -4,11 +4,12 @@ import { AutenticazioneService } from '../services/autenticazione.service';
 import { HttpResponse } from '@angular/common/http';
 import e from 'express';
 import { LoginScreenComponent } from './login-screen/login-screen.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [LoginScreenComponent],
+  imports: [LoginScreenComponent, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -17,6 +18,10 @@ export class LoginComponent {
     this.isRegister = !this.isRegister;
   }
 
-  constructor(private auth: AutenticazioneService) { }
+  constructor(public auth: AutenticazioneService) { }
   isRegister: boolean = false;
+
+  public logout() {
+    this.auth.logout();
+  }
 } 

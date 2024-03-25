@@ -21,6 +21,8 @@ public class Disegno {
 
     public LocalDate data;
 
+    public String path;
+
 
     public void setNome(String nome) {
         this.nome = nome;

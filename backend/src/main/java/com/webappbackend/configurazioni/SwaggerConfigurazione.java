@@ -25,12 +25,13 @@ public class SwaggerConfigurazione {
                         addList("Bearer Authentication"))
                 .components(new Components().addSecuritySchemes
                         ("Bearer Authentication", securityScheme()))
-                .info(new Info().title("My REST API")
-                        .description("Some custom description of API.")
-                        .version("1.0").contact(new Contact().name("Sallo Szrajbman")
-                                .email( "www.baeldung.com").url("salloszraj@gmail.com"))
-                        .license(new License().name("License of API")
-                                .url("API license URL")));
+                .info(new Info().title("Rest API per i disegni")
+                        .description("Queste api permettono di gestire i disegni degli utenti.")
+                        .version("0.1").contact(new Contact().name("Abigail")
+                                .email( "www.abigail.com").url("abigail.abigail@gmail.com")
+    ));
+
+
     }
 
 

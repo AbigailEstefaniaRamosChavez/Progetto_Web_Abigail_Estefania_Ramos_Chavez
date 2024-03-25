@@ -11,5 +11,5 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'areaPrivata', component: AreaPersonaleComponent, canActivate: [authGuard] },
     { path: 'areaPrivata/aggiungi', component: AggiungiDisegniComponent, canActivate: [authGuard] },
-    // { path: '**', redirectTo: 'home' }//da fare una pagine di rotta non trovata
+    { path: '**', redirectTo: 'home' }//da fare una pagine di rotta non trovata
 ];

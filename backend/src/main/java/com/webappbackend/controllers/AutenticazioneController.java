@@ -19,7 +19,6 @@ public class AutenticazioneController {
 
     AuthService authService;
 
-    @Autowired
     public AutenticazioneController(AuthService authService) {
         this.authService = authService;
     }

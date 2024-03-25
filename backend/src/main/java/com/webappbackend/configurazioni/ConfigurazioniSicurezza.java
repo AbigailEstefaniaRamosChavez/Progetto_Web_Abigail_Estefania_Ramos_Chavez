@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.SecurityContextHolderFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -16,10 +17,11 @@ public class ConfigurazioniSicurezza {
 
     private final String[] WHITELIST = {
             "/api/v0/autenticazione/**",
-            "swagger-ui/**",
+            "/swagger-ui/**",
             "/swagger-ui.html",
             "/v3/api-docs/**",
             "/swagger-ui/**",
+            "/h2-console/**",
     };
     private JwtFiltro jwtFiltro;
     @Autowired
@@ -41,7 +43,6 @@ public class ConfigurazioniSicurezza {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilterAfter(jwtFiltro, SecurityContextHolderFilter.class)
-
                 .build();
     }
 }

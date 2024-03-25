@@ -1,18 +1,21 @@
 package com.webappbackend.apiModels.Responses;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.webappbackend.serilizzatori.SerilizzatoreByte;
+import io.jsonwebtoken.io.Encoders;
+
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class ImageResponse {
-    Byte[] image;
+    @JsonSerialize(using = SerilizzatoreByte.class)
+    byte[] image;
 
     String nome;
 
     public ImageResponse(byte[] image) {
-        this.image = new Byte[image.length];
-        for (int i = 0; i < image.length; i++) {
-            this.image[i] = image[i];
-        }
+        this.image =image;
         nome = "aa";
     }
 }

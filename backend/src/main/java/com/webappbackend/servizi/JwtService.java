@@ -35,7 +35,7 @@ public class JwtService {
     public String DaiToken(int id){
         return Jwts.builder()
                 .claim("id", id)
-                .setIssuer("https://www.Disegni.com")
+                .setIssuer("https://www.Abi.com")
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(GetKey())

@@ -34,7 +34,7 @@ public class JwtFiltro extends OncePerRequestFilter {
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
             }else {
-              filterChain.doFilter(request, response);
+                filterChain.doFilter(request, response);
                 return;
             }
         int id = this.jwtService.DaiId(jwt);
@@ -42,7 +42,6 @@ public class JwtFiltro extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        //request.setAttribute("id", id); vedi come passare l'id
         //mi assicuro che l'utente sia esistente
         Utente utente = utenteService.getUtente(id);
         if(utente != null && SecurityContextHolder.getContext().getAuthentication() == null) {

@@ -1,8 +1,8 @@
 <div class="card-group">
     <div class="card " *ngFor="let disegno of disegni">
-        
+
         <div class="bg-dark rounded-top">
-            <img [src]="this.imgUrl" class="card-img-top" alt="Immagine da Disegno">
+            <img [src]="disegno.url" class="card-img-top" alt="Immagine da Disegno">
         </div>
 
         <div class="card-body">

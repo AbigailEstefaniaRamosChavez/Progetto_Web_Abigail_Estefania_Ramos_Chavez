@@ -2,6 +2,7 @@ package com.webappbackend.controllers;
 
 import com.webappbackend.apiModels.DTOs.DisegnoDto;
 import com.webappbackend.apiModels.DTOs.UtenteDto;
+import com.webappbackend.apiModels.Responses.ImageResponse;
 import com.webappbackend.controllers.utils.DaiUtenteUtil;
 import com.webappbackend.modelli.Disegno;
 import com.webappbackend.modelli.Utente;
@@ -13,6 +14,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RestController
 @RequestMapping("/api/v0/utente")
@@ -47,6 +55,7 @@ public class UtenteController {
                 utente.getDisegni()
                         .stream()
                         .map(DisegnoDto::new)
+
                 , HttpStatus.OK
         );
     }

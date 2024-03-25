@@ -21,12 +21,11 @@ export class AggiungiDisegniComponent {
   constructor(private disegniservice: DisegnoServiceService) { }
   submit() {
     let formData = new FormData();
-    formData.append('file', this.file as Blob);
-    formData.append('titolo', this.form.value.titolo);
-    formData.append('descrizione', this.form.value.descrizione);
-    this.disegniservice.aggiungiDisegno(formData).subscribe(
+    formData.append('file', this.file as File, (this.file as File).name);
+    this.disegniservice.aggiungiDisegno(formData, this.form.value.titolo, this.form.value.descrizione).subscribe(
       (data) => {
         console.log(data);
+        alert("Disegno inserito.");
       });
   }
 

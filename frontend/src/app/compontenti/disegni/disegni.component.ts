@@ -18,22 +18,22 @@ export class DisegniComponent {
 
   disegni: Disegno[] = [];
 
-  constructor(private disegnoService: DisegnoServiceService, private santizer: DomSanitizer) {
+  constructor(private disegnoService: DisegnoServiceService, private sanitizer: DomSanitizer) {
     disegnoService.getDisegni().subscribe(
       disegni => {
         console.log(disegni);
         this.disegni = disegni;
-        this.loadImage(4)
+        disegni.forEach( d => this.loadImage(d));
       });
   }
 
-  imgUrl: SafeUrl = '';
-
-  loadImage(id: number) {
-    this.disegnoService.getImg(id).subscribe(blob => {
-      let objectURL = URL.createObjectURL(blob);
-      console.log(objectURL);
-      this.imgUrl = this.santizer.bypassSecurityTrustUrl(objectURL);
-    });
+  loadImage(dis: Disegno) {
+    this.disegnoService.getImg(dis.id).subscribe(
+      (res: any) => {
+        console.log(res);
+        const url = window.URL.createObjectURL(res);
+        dis.url = this.sanitizer.bypassSecurityTrustUrl(url);
+      }
+    );
   }
 }

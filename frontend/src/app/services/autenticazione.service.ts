@@ -14,6 +14,12 @@ export class AutenticazioneService {
     this.isLogin = this.token !== '';
   }
 
+  public logout() {
+    this.isLogin = false;
+    this.token = '';
+    window.localStorage.removeItem('token');
+  }
+
   public getLogin() {
     return this.isLogin;
   }

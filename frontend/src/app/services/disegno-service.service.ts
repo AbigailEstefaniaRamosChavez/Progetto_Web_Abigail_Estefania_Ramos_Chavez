@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Disegno } from '../interfaces/Disegno';
@@ -16,10 +16,13 @@ export class DisegnoServiceService {
     return this.http.get<Disegno[]>('/api/v0/utente/disegni', { headers: { Authorization: `Bearer ${this.auth.getToken()}` } })
   }
 
-  public aggiungiDisegno(disegno: FormData): Observable<Disegno> {
-    return this.http.post<Disegno>('/api/v0/disegno/creoDisegno/request', disegno, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } })
+  public aggiungiDisegno(disegno: FormData, titolo : string, descrizione : string): Observable<Disegno> {
+
+    let param = new HttpParams().append('titolo', titolo).append("descrizione", descrizione);
+
+    return this.http.post<Disegno>('/api/v0/disegno/creoDisegno/request', disegno, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }, params: param })
   }
-  public getImg(id: number): Observable<Blob> {
-    return this.http.get<Blob>(`/api/v0/disegno/img/4`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` } });
+  public getImg(id: number): Observable<any>  {
+    return this.http.get(`/api/v0/disegno/img/${id}`, { headers: { Authorization: `Bearer ${this.auth.getToken()}` }, responseType: 'blob' });
   }
 }
